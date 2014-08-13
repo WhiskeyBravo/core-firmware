@@ -28,23 +28,35 @@
 
 #include "spark_wiring.h"
 
+// portability macro, thanks to this http://stackoverflow.com/questions/295120/c-mark-as-deprecated/21265197#21265197
+// for inspiration, mine takes a second argument
+#ifdef __GNUC__
+#define DEPRECATED(reason, func) func __attribute__ ((deprecated))
+#elif defined(_MSC_VER)
+#define DEPRECATED(reason, func) __declspec(deprecated) func
+#else
+#pragma message("WARNING: You need to implement DEPRECATED for this compiler")
+#define DEPRECATED(reason, func) func
+#endif
+
+
 //Retained for compatibility and to flag compiler warnings as build errors
 class NetworkClass
 {
 public:
-    uint8_t* macAddress(uint8_t* mac) __attribute__((deprecated("Please use WiFi.macAddress() instead")));
-    IPAddress localIP() __attribute__((deprecated("Please use WiFi.localIP() instead")));
-    IPAddress subnetMask() __attribute__((deprecated("Please use WiFi.subnetMask() instead")));
-    IPAddress gatewayIP() __attribute__((deprecated("Please use WiFi.gatewayIP() instead")));
-    char* SSID() __attribute__((deprecated("Please use WiFi.SSID() instead")));
-    int8_t RSSI() __attribute__((deprecated("Please use WiFi.RSSI() instead")));
-    uint32_t ping(IPAddress remoteIP) __attribute__((deprecated("Please use WiFi.ping() instead")));
-    uint32_t ping(IPAddress remoteIP, uint8_t nTries) __attribute__((deprecated("Please use WiFi.ping() instead")));
+	DEPRECATED("Please use WiFi.macAddress() instead", uint8_t* macAddress(uint8_t* mac) );
+	DEPRECATED("Please use WiFi.localIP() instead", IPAddress localIP() );
+	DEPRECATED("Please use WiFi.subnetMask() instead", IPAddress subnetMask() );
+	DEPRECATED("Please use WiFi.gatewayIP() instead", IPAddress gatewayIP() );
+	DEPRECATED("Please use WiFi.SSID() instead", char* SSID() );
+	DEPRECATED("Please use WiFi.RSSI() instead", int8_t RSSI() );
+	DEPRECATED("Please use WiFi.ping() instead", uint32_t ping(IPAddress remoteIP) );
+	DEPRECATED("Please use WiFi.ping() instead", uint32_t ping(IPAddress remoteIP, uint8_t nTries) );
 
-    static void connect(void) __attribute__((deprecated("Please use WiFi.connect() instead")));
-    static void disconnect(void) __attribute__((deprecated("Please use WiFi.disconnect() instead")));
-    static bool connecting(void) __attribute__((deprecated("Please use WiFi.connecting() instead")));
-    static bool ready(void) __attribute__((deprecated("Please use WiFi.ready() instead")));
+	DEPRECATED("Please use WiFi.connect() instead", static void connect(void) );
+	DEPRECATED("Please use WiFi.disconnect() instead", static void disconnect(void) );
+	DEPRECATED("Please use WiFi.connecting() instead", static bool connecting(void) );
+	DEPRECATED("Please use WiFi.ready() instead", static bool ready(void) );
 };
 
 extern NetworkClass Network;

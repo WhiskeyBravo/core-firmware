@@ -160,8 +160,14 @@ int userFuncSchedule(const char *funcKey, const char *paramString);
 
 long socket_connect(long sd, const sockaddr *addr, long addrlen);
 
-void setup() __attribute__ ((weak));
-void loop() __attribute__ ((weak));
+// for now Visual Studio has no eqivalent of the weak macro
+#ifdef _MSC_VER
+  void setup();
+  void loop();
+#else
+  void setup() __attribute__((weak));
+  void loop() __attribute__((weak));
+#endif
 
 #ifdef __cplusplus
 } /* end of extern "C" */

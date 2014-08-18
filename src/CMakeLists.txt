@@ -12,5 +12,5 @@ cmake_minimum_required(VERSION 3.0)
 #  message(STATUS "dir='${dir}'")
 #endforeach()
 
-add_library(spark_wiring_string_lib spark_wiring_string.cpp)
+#add_library(spark_wiring_string_lib spark_wiring_string.cpp)
 

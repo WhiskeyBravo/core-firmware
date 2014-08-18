@@ -48,7 +48,9 @@ set(EXT_PROJECTS_DIR ${PROJECT_SOURCE_DIR}/ext)
 ################################
 # Our sources and includes
 ################################
-include_directories(inc)
+include_directories(
+  ${spark_core_firmware_SOURCE_DIR}/inc
+  ${spark_core_firmware_SOURCE_DIR})
 #add_subdirectory(src)
 link_directories(${spark_core_firmware_BINARY_DIR}/src)
 add_library(spark_wiring src/spark_wiring_all.cpp)

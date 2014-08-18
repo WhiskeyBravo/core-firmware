@@ -53,7 +53,7 @@ include_directories(
   ${spark_core_firmware_SOURCE_DIR})
 #add_subdirectory(src)
 link_directories(${spark_core_firmware_BINARY_DIR}/src)
-add_library(spark_wiring src/spark_wiring_all.cpp)
+add_library(spark_wiring_lib src/spark_wiring_all.cpp)
 
 ################################
 # Normal Libraries & Executables
